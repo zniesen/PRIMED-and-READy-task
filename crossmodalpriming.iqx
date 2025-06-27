@@ -1,216 +1,184 @@
-﻿<usermanual>
-___________________________________________________________________________________________________________________	
+<usermanual>
+___________________________________________________________________________________________________________________    
 
-									CROSS MODAL PRIMING
-___________________________________________________________________________________________________________________	
+                                    CROSS-MODAL SEMANTIC PRIMING TASK
+___________________________________________________________________________________________________________________    
 
-Script Author: Katja Borchert, Ph.D. (katjab@millisecond.com) for Millisecond Software, LLC
-Date: 09-13-2013
-last updated:  02-21-2022 by K. Borchert (katjab@millisecond.com) for Millisecond Software, LLC
+**Script Author**: Katja Borchert, Ph.D. (katjab@millisecond.com)  
+**Date**: 09-13-2013  
+**Last Updated**: 06-27-2025 by Zoe Niesen 
 
-Script Copyright © 02-21-2022 Millisecond Software
+**Copyright** © 02-21-2022 Millisecond Software  
 
-___________________________________________________________________________________________________________________
-BACKGROUND INFO 	
-___________________________________________________________________________________________________________________
-This script implements a basic cross modal priming paradigm (audio->visual) as generously shared by Dr. Meghan Sumner. 
-The basic question this script addresses is whether a within-accent (typical) voice facilitates the recognition of 
-the visual target compared to an atypically accented voice.
+___________________________________________________________________________________________________________________    
+BACKGROUND INFO    
+___________________________________________________________________________________________________________________    
 
-In general, priming procedures are simple response-timed binary categorization tasks of items from two target
-categories  (e.g. positive vs. negative adjectives). Priming Procedures are based on the assumption that 
-people respond faster if the target category was already 'mentally activated' by briefly presenting items 
-(called 'primes') that are closely connected in one's mind. Thus, a person should be faster to quickly categorize
-the target word 'good' as 'positive' after the brief presentation of the prime word 'ice-cream' than
-after the brief presentation of the prime word 'famine'. This particularly script uses the general priming
-procedure in a cross-modal (auditory primes, visual targets) domain.
+This script implements a basic cross-modal priming paradigm (audio → visual). 
+The central question is whether people respond more quickly when the priming word (auditory) or the target word (visual) are related or when they are unrelated.
 
+Priming procedures are typically simple, response-timed binary categorization tasks using items from two target categories (e.g., positive vs. negative adjectives).  
+They are based on the assumption that people respond faster when the target category is already *mentally activated* by briefly showing a related *prime*.
 
-Millisecond Software thanks Dr. Sumner for generously supporting the development of this script and providing the stimuli!
+For example, a participant may categorize the word “good” as *positive* more quickly after seeing the prime “ice-cream” than after seeing “famine”.  
+This script adapts that structure to a cross-modal design, using **auditory primes** and **visual targets**.
 
-For an example of a similar cross modal priming paradigm see:
-Sumner, M. (2013). A phonetic explanation of pronunciation variant effects.
-JASA Express Letters [http://dx.doi.org/10.1121/1.4807432]. Published Online 5 June 2013.
+> Millisecond Software thanks Dr. Sumner for supporting development and providing the stimuli.
 
-___________________________________________________________________________________________________________________
-TASK DESCRIPTION	
-___________________________________________________________________________________________________________________
-Participants listen to audio recordings of words ("primes") that are followed by either visual presentations of 
-words or nonwords ("targets") presented in the middle of a computer screen. Participants are asked
-to do a simple classification task on the visual word/nonword: press one key if the visual target is a word 
-and another key if the visual target is a nonword/UNRELATEDword. Participants are encouraged to 
-respond as quickly as possible.
+**Reference**:  
+Sumner, M. (2013). *A phonetic explanation of pronunciation variant effects.*  
+**JASA Express Letters**. [https://doi.org/10.1121/1.4807432]
 
-___________________________________________________________________________________________________________________	
-DURATION 
-___________________________________________________________________________________________________________________	
-the default set-up of the script takes appr. 5 minutes to complete
+___________________________________________________________________________________________________________________    
+TASK DESCRIPTION    
+___________________________________________________________________________________________________________________    
 
-___________________________________________________________________________________________________________________	
-DATA FILE INFORMATION 
-___________________________________________________________________________________________________________________
-The default data stored in the data files are:
+Participants hear audio recordings of words (primes), followed by visual words (targets) presented in the center of the screen.  
+They are asked to perform a classification task:
 
-(1) Raw data file: 'crossmodalpriming_raw*.iqdat' (a separate file for each participant)
+- Press one key if the target is **related** to the priming word
+- Press another key if the target is **unrelated** to the priming word
 
-build:								The specific Inquisit version used (the 'build') that was run
-computer.platform:					the platform the script was run on (win/mac/ios/android)
-date, time: 						date and time script was run 
-subject, group: 					with the current subject/groupnumber
-session:							with the current session id
+Participants are instructed to respond **as quickly as possible**.
 
-blockcode, blocknum:				the name and number of the current block (built-in Inquisit variable)
-trialcode, trialnum: 				the name and number of the currently recorded trial (built-in Inquisit variable)
-										Note: trialnum is a built-in Inquisit variable; it counts all trials run; even those
-										that do not store data to the data file such as feedback trials. Thus, trialnum 
-										may not reflect the number of main trials run per block. 
-																				
-										
-currentisi:							the currently assigned interstimulusinterval (time between offset of prime and onset of target)
+___________________________________________________________________________________________________________________    
+DURATION    
+___________________________________________________________________________________________________________________    
 
-condition:							1 = "task" ("typical" AE); 
-									2 = condition2 ("atypical" AE)
-									
-relatedness:						0 = N/A (filler); 
-									1 = related target; 
-									2 = unrelated target
-									
-prime:								stores the current prime wav file played
-target:								stores the current visual target associated with the selected prime
-stimulusite:						the presented stimuli in order of trial presentation
+The default setup takes approximately **5 minutes** to complete.
 
-response:							the participant's key response (scancode of response key)
-										30 = A (left)
-										38 = L (right)
-										
-resp:								the response: 'RELATED' or 'UNRELATED'
-correct:							the correctness of the response (1 = correct; 0 = otherwise)
-latency: 							the response latency; measured from onset of targets
+___________________________________________________________________________________________________________________    
+DATA FILE INFORMATION    
+___________________________________________________________________________________________________________________    
 
-(2) Summary data file: 'crossmodalpriming_summary*.iqdat' (a separate file for each participant)
+### (1) Raw data file: `crossmodalpriming_raw*.iqdat` (one file per participant)
 
-inquisit.version: 					Inquisit version run
-computer.platform:					the platform the script was run on (win/mac/ios/android)
-startDate:							date script was run
-startTime:							time script was started
-subjectid:							assigned subject id number
-groupid:							assigned group id number
-sessionid:							assigned session id number
-elapsedTime:						time it took to run script (in ms); measured from onset to offset of script
-completed:							0 = script was not completed (prematurely aborted); 
-									1 = script was completed (all conditions run)
+Includes:
 
-///parameter settings
-usefixedISI:						true = a fixed ISI is to be used in the study (set under /fixedISI)
-									false = different ISIs are to be used (see lists below under Editable Lists)
-								
-fixedISI:							sets the fixed ISI (if a fixed ISI is to be used)
-										(Note: To customize randomly determinded ISI for each type of pairing go to Editable Lists for an example)
-										
-maxtargetpresentation:				sets the max duration of the target/response trial (Note: trial is response terminated unless it takes longer
-									than parameters.maxtargetpresentation)
-									
-ITI:								ITI - intertrialinterval: sets the pause between the end of one trial sequence (priming and task)
-									and the start of the next
-									
-fontheight:							size of the visual targets
+- **System Info**:  
+  - `build` = Inquisit version used  
+  - `computer.platform` = platform used (Win/Mac/iOS/Android)  
+  - `date`, `time` = when script was run  
+- **Participant Info**:  
+  - `subject`, `group`, `session` = assigned values  
 
-////summary DVs:
+- **Trial/Block Info**:  
+  - `blockcode`, `blocknum` = current block name and number  
+  - `trialcode`, `trialnum` = current trial name and number  
+    > Note: `trialnum` counts all trials, including non-recorded (e.g., feedback), so may not equal total task trials.
 
-		task = "typical" American English
-		condition2 = "atypical" American Englich
+- **Experimental Variables**:  
+  - `currentisi` = time between offset of prime and onset of target  
+  - `relatedness` =  
+    - 1 = related target  
+    - 2 = unrelated target  
+  - `prime` = auditory word played  
+  - `target` = visual word presented  
+  - `stimulusitem` = presentation order
 
-		R = related
-		UR = unrelated
+- **Response Info**:  
+  - `response` = scancode of key pressed  
+    - 30 = A (left)  
+    - 38 = L (right)  
+  - `resp` = response label (RELATED or UNRELATED)  
+  - `correct` = accuracy (1 = correct; 0 = incorrect)  
+  - `latency` = reaction time (ms) from target onset
 
-errorrate_R -
-errorrate_condition2filler: 	(error)rate of categorizing related targets as UNRELATEDwords in all exp.condition
+---
 
-meanRT_R -
-meanRT_condition2filler:		mean latency of correctly categorizing words/nonwords in each condition
+### (2) Summary data file: `crossmodalpriming_summary*.iqdat`
 
-Difference Scores (only correct responses considered):
+Includes:
 
-Diff1:							Difference Score between mean latency in Condition 1UR (unrelated) and mean latency in Condition 1R (related)
-									=> meanRT_UR is expected to be slower (bigger latency) and therefore Diff_task is 
-									expected to be positive
-										
-Diff2: 							Difference Score between mean latency in Condition 2UR (unrelated) and mean latency in Condition 2R (related)
-									=> meanRT_condition2UR is expected to be slower (bigger latency) and therefore Diff_condition2 is 
-									expected to be positive
-									
-___________________________________________________________________________________________________________________	
-EXPERIMENTAL SET-UP 
-___________________________________________________________________________________________________________________	
-2 accents ("typical" American English vs. an "atypical" -ethnic variety- of AE ) X 2 levels of prime-target relatedness (Related vs. Unrelated)
-R(elated) = identical in this script
+- `inquisit.version`, `computer.platform`  
+- `startDate`, `startTime`, `subjectid`
+- `elapsedTime` = total run time (ms)  
+- `completed` =  
+  - 1 = script completed  
+  - 0 = script not completed
 
-- 12 prime-targets in each of the 4 experimental conditions, none of the targets in these conditions are nonwords
-- 96 filler pairs that provide nonword targets
-=> 1/2 the trials have words/nonwords
+**Parameter Settings:**
 
-*Test Blocks:
-- option to run test blocks in a blocked design by condition or in a mixed design (default)
-	=> go to EXPERIMENT section and follow additional instructions 
+- `usefixedISI` =  
+  - true = fixed ISI (set by `/fixedISI`)  
+  - false = variable ISIs (see Editable Lists)
+- `fixedISI` = ISI value (if fixed)
+- `maxtargetpresentation` = max target duration (response-terminated)
+- `ITI` = intertrial interval
+- `fontheight` = size of visual targets
 
-*Trial Sequence:
-audio prime -> ISI-> visual target (response terminated or until parameters.maxtargetpresentation) -> ITI
+**Summary DVs:**
+- `R` = related  
+- `UR` = unrelated  
 
-- under Editable Values it can be set whether a fixed interstimulusinterval (ISI: time between offset of prime and onset of target)
-is to be used or whether varying ISIs should be used (controlled via editable lists) (default: fixed at 100ms)
-- an intertrialinterval (ITI) can be set under Editable Values (default: 1000ms)
+Error Rates:  
+- `errorrate_R`, `errorrate_UR` = error rate for classifying related targets
 
-!!!Note: the response keys for word/UNRELATED words can be counterbalanced by groupnumber.
+Mean RTs:  
+- `meanRT_R`, `meanRT_UR` = mean response time (correct responses only)
 
-___________________________________________________________________________________________________________________	
-STIMULI
-___________________________________________________________________________________________________________________
-* audio stimuli: This script runs with stimuli provided by Dr. Sumner
-* visual stimuli: This script runs with stimuli provided by Dr. Sumner
-The visual stimuli are presented in Times New Roman,  Fontheight is coded as a percentage of screen height and can be 
-edited under Editable Values.
+Standard Deviation Scores:
+- `stdevRT_R`, `stdevRT_UR` = standard deviation of the response time (correct responses only)
 
-___________________________________________________________________________________________________________________	
-INSTRUCTIONS 
-___________________________________________________________________________________________________________________
-Instructions are made by Millisecond Software and can easily be customized under
-EDITABLE CODE -> Editable Instructions
+Difference Score:
+- 'DiffRT' = Difference Score between mean latency in unrelated condition and mean latency in related condition
+  - meanRT_UR is expected to be slower (bigger latency) and therefore DiffRT is expected to be positive.
 
-___________________________________________________________________________________________________________________	
-EDITABLE CODE 
-___________________________________________________________________________________________________________________	
-check below for (relatively) easily editable parameters, stimuli, instructions etc. 
-Keep in mind that you can use this script as a template and therefore always "mess" with the entire code 
-to further customize your experiment.
+___________________________________________________________________________________________________________________    
+EXPERIMENTAL SET-UP    
+___________________________________________________________________________________________________________________    
 
-The parameters you can change are:
+**Design**:  
+- 2 Relatedness levels (Related vs. Unrelated)  
+- Related targets are not identical words; rather, they are synonyms or words that may be found in a similar contexts.
+- 24 items per condition (×2 = 48 trials)  
+→ 50% related / 50% unrelated targets
 
-Responsekey Set-up:
-/responsekey1-
-/responsekey2:							sets the 2 responsekeys (uses scancodes) and labels them
-										(default: "A", "L")
-										Note: the response keys for words/UNRELATED words can be counterbalanced by groupnumber in this script
+**Trial Sequence:**  
+`Audio prime` → `ISI` → `Visual target` → `Response or timeout` → `ITI`
 
-Duration Set ups:
+**Customization Options:**  
+- ISI:  
+  - Fixed (default = 100ms)  
+  - Variable (see Editable Lists)  
+- ITI (default = 1000ms)  
 
-/getReadyDuration:						the duration (in ms) of the get-ready trial (default: 2000ms)
-	
-/maxtargetpresentation:					sets the max duration (in ms) of the target/response trial (Note: trial is response terminated unless it takes longer
-										than parameters.maxtargetpresentation)
-									
-/ITI:									ITI - intertrialinterval (in ms): sets the pause between the end of one trial sequence (priming and task)
-										and the start of the next (default: 2000ms)
-										
-/usefixedISI:							true = a fixed ISI is to be used in the study (set under /fixedISI) (default option in this script)
-										false = different ISIs are to be used (see lists below under Editable Lists)
-										
-/fixedISI:								sets the fixed ISI (if a fixed ISI is to be used)
-										(Note: To customize randomly determinded ISI for each type of pairing go to Editable Lists for an example)
+___________________________________________________________________________________________________________________    
+STIMULI    
+___________________________________________________________________________________________________________________    
 
-/fontheight:							size of the visual target (non)words
+- **Audio**: Word recordings from Dr. Sumner  
+- **Visual**: Word targets from Zoe Niesen
+- Font: *Times New Roman*, adjustable via `/fontheight`
+
+___________________________________________________________________________________________________________________    
+INSTRUCTIONS    
+___________________________________________________________________________________________________________________    
+
+Instructions can be customized under:  
+`EDITABLE CODE → Editable Instructions`
+
+___________________________________________________________________________________________________________________    
+EDITABLE CODE    
+___________________________________________________________________________________________________________________    
+
+You can easily customize the following:
+
+### Response Key Setup:
+/responsekey1 = "A"  
+/responsekey2 = "L"  
+
+### Duration Settings:
+/getReadyDuration = 2000 ms  
+/maxtargetpresentation = 2000 ms  
+/ITI = 1000 ms  
+/usefixedISI = true  
+/fixedISI = 100 ms
+
+### Visual Presentation:
+/fontheight = 5% (of screen height)
 
 </usermanual>
-
 
 **************************************************************************************************************
 **************************************************************************************************************
@@ -241,17 +209,12 @@ Duration Set ups:
 primes = audio files of words
 targets = visual words
 
-task = "typical" American English
-condition2 = "atypical" American English
-
 R = related
 UR = unrelated
 ******************************
 
-
-
 ******************************
-Critical Primes
+Primes
 ******************************
 
 <item primes_R>
@@ -309,7 +272,7 @@ Critical Primes
 </item>
 
 ******************************
-Critical Targets
+Targets
 ******************************
 
 <item targets_R>
@@ -427,14 +390,11 @@ general instruction expressions: adjust the instruction text depending on device
 else {"put your index fingers on the '<%parameters.responsekey1%>' and '<%parameters.responsekey2%>' keys";}
 </expressions>
 
-
-
 **************************************************************************************************************
 **************************************************************************************************************
 	EDITABLE LISTS: change editable lists here
 **************************************************************************************************************
 **************************************************************************************************************
-
 
 ********************************************************************
 ISI Lists: control of ISI  IF parameters.usefixedISI = false
@@ -492,24 +452,22 @@ raw data
 
 <data>
 /columns = (build, inquisit.version, computer.platform, date, time, subject, group, session, blockcode, blocknum, 
-trialcode, trialnum, 
-values.currentisi, values.condition, values.relatedness, values.prime, values.target,
-stimulusitem, response, values.resp, correct, latency)
+trialcode, trialnum, values.currentisi, values.relatedness, values.prime, values.target, response, values.resp, correct, latency)
 </data>
 
 ********************
 summary data
 ********************
+RT = reaction time
 
-#edit this
+UR = unrelated
+R = related
+
 <summarydata>
-/columns = (script.startDate, script.startTime, 
-script.subjectId, script.elapsedTime, script.completed, 
-parameters.usefixedISI, parameters.fixedISI, parameters.maxtargetpresentation, parameters.ITI, parameters.fontheight,
-expressions.errorrate_R, expressions.errorrate_UR,
-
-expressions.meanRT_R, expressions.meanRT_UR, expressions.stdevRT_R, expressions.stdevRT_UR, 
-expressions.DiffRT)
+/columns = (script.startDate, script.startTime, script.subjectId, script.elapsedTime, script.completed, 
+parameters.usefixedISI, parameters.fixedISI, parameters.maxtargetpresentation, parameters.ITI, 
+parameters.fontheight, expressions.errorrate_R, expressions.errorrate_UR, expressions.meanRT_R, expressions.meanRT_UR, 
+expressions.stdevRT_R, expressions.stdevRT_UR, expressions.DiffRT)
 </summarydata>
 
 *******************************************************************************************************************
@@ -518,21 +476,16 @@ expressions.DiffRT)
 *******************************************************************************************************************
 *******************************************************************************************************************
 
-/RELATEDwordkey-
-/UNRELATEDwordkey:						assigned scancode/associated label for RELATEDword key and UNRELATEDword key
-/leftcategory:								presents the assigned category (UNRELATED or words) response button on the left side
-/
-:								presents the assigned category (UNRELATED or words) response button on the right side
-/condition:									1 = "task" ("typical" AE); 2 = condition2 ("atypical" AE)
-/relatedness:								0 = N/A; 1 = related target; 2 = unrelated target
-/currentISI:								the currently assigned interstimulusinterval 
-											(time between offset of prime and onset of target)
-									
-
-/prime_itemnumber:							the itemnumber of the current prime
+/RELATEDwordkey-							assigned scancode/associated label for RELATED word key
+/UNRELATEDwordkey:							assigned scancode/associated label for UNRELATED word key
+/leftcategory:								presents the assigned category (UNRELATED or RELATED) response button on the left side
+/rightcategory:								presents the assigned category (UNRELATED or RELATED) response button on the right side
+/relatedness:								1 = related target; 2 = unrelated target
+/currentISI:								the currently assigned inter-stimulus interval 
+											(time between offset of prime and onset of target)									
+/prime_itemnumber:							the item number of the current prime
 /prime:										stores the current prime wav file played
 /target:									stores the current visual target associated with the selected prime
-
 /resp:										the response: RELATED vs. UNRELATED
 
 <values>
@@ -557,17 +510,21 @@ expressions.DiffRT)
 	EXPRESSIONS
 *******************************************************************************************************************
 *******************************************************************************************************************
-/errorrate_R -
-/errorrate_condition2filler: 			(error)rate of categorizing related targets as UNRELATEDwords in all exp.condition
+Error Rates:
+/errorrate_R:							(error)rate of categorizing RELATED targets as UNRELATED words
+/errorrate_UR: 							(error)rate of categorizing UNRELATED targets as RELATED words
 
-/meanRT_R -
-/meanRT_condition2filler:				mean latency of correctly categorizing words/nonwords in each condition
+Mean Scores:
+/meanRT_R:								mean latency of correctly categorizing words as related 
+/meanRT_UR:								mean latency of correctly categorizing words as unrelated 
 
-Difference Scores:
-/Diff1:		Difference Score between mean latency in Condition 1UR (unrelated) and mean latency in Condition 1R (related)
-						=> meanRT_UR is expected to be slower (bigger latency) and therefore Diff_task is expected to be positive
-/Diff2: 	Difference Score between mean latency in Condition 2UR (unrelated) and mean latency in Condition 2R (related)
-						=> meanRT_condition2UR is expected to be slower (bigger latency) and therefore Diff_condition2 is expected to be positive
+Standard Deviation Scores:
+/stdevRT_R:								 standard deviation of the latency of correctly categorizing words as related 
+/stdevRT_UR:							 standard deviation of the latency of correctly categorizing words as unrelated 
+
+Difference Score:
+/DiffRT: 	Difference Score between mean latency in unrelated condition and mean latency in related condition
+						=> meanRT_UR is expected to be slower (bigger latency) and therefore DiffRT is expected to be positive.
 
 <expressions>
 /errorrate_R = 1 - list.ACC_R.mean
@@ -576,10 +533,10 @@ Difference Scores:
 /meanRT_R = list.RT_R.mean
 /meanRT_UR = list.RT_UR.mean
 
-/DiffRT = meanRT_UR - meanRT_R
-
 /stdevRT_R = list.RT_R.standarddeviation
 /stdevRT_UR = list.RT_UR.standarddeviation
+
+/DiffRT = meanRT_UR - meanRT_R
 </expressions>
 
 **************************************************************************************************************
@@ -587,7 +544,6 @@ Difference Scores:
 	INSTRUCTIONS
 **************************************************************************************************************
 **************************************************************************************************************
-
 
 <trial finish>
 / stimulusframes = [1 = clearScreen, finish]
@@ -598,9 +554,9 @@ Difference Scores:
 *************************************
 General Helper Instruction Trials/Blocks
 *************************************
-
 This trial is used when participants are asked to place their fingers on specific response
 buttons. On the touchscreen, this trial presents the (inactive) response buttons to the participants.
+
 <trial getReady>
 / stimulusframes = [1 = getReady]
 / trialduration = parameters.getReadyDuration
@@ -615,6 +571,7 @@ buttons. On the touchscreen, this trial presents the (inactive) response buttons
 	STIMULI
 *******************************************************************************************************************
 *******************************************************************************************************************
+
 <text LeftCat>
 /items = ("<%values.leftcategory%>")
 / fontstyle = ("Arial", 3.5%, true, false, false, false, 5, 1)  // Reduced the font size slightly
@@ -633,19 +590,13 @@ buttons. On the touchscreen, this trial presents the (inactive) response buttons
 / halign = center   // Centered text alignment
 </text>
 
-
-Note: the primes are randomly selected without replacement from their respective item lists
-
+	
 ****************************
 critical pairs:
 primes = audiofiles of words
 targets = visual words
 R = "typical" American English with related words
-RR = "typical" American English with unrelated words
-condition2R = "atypical" American English with related words
-condition2RR = "atypical" American English with unrelated words
-taskfiller = "typical" American English with nonwords
-condition2filler = "atypical" American English with nonwords
+UR = "typical" American English with unrelated words
 ****************************
 
 <sound prime_R>
@@ -678,6 +629,10 @@ condition2filler = "atypical" American English with nonwords
 /position = (50%, 50%)
 </text>
 
+Note: the prime-target pairs are randomly selected without replacement from their respective item lists.
+	=> all 48 pairs are presented
+	=> no pairs are repeated
+	=> order is random and varies participant to participant
 
 **************************************************************************************************************
 **************************************************************************************************************
@@ -685,11 +640,10 @@ condition2filler = "atypical" American English with nonwords
 **************************************************************************************************************
 **************************************************************************************************************
 
-
 *************************************************
 Data Lists: used for descriptive statistics
-store correct latencies/accuracy data
-fill up during runtime
+* store correct latencies/accuracy data
+* fill up during runtime
 *************************************************
 
 Note: list stores 1 = correct response; 0 = incorrect response for each relevant trial
@@ -713,11 +667,11 @@ Note: list stores the latency of correct responses for each relevant trial
 *******************************************************************************************************************
 *******************************************************************************************************************
 
-************************
-Condition 1 Trials:
-************************
+************************ 
+Related Trials:
+************************ 
 
-Note:
+prime_R:
 * selects randomly (without replacement) the next prime for R and plays it
 * calls trial.target_R
 <trial prime_R>
@@ -741,10 +695,9 @@ Note:
 /branch = [return trial.target_R;]
 /posttrialpause = values.currentisi
 /recorddata = false
-
 </trial>
 
-Note:
+target_R:
 * selects the appropriate target for R and presents it in the middle of the screen
 * collects trial data
 * updates summary variables
@@ -770,6 +723,14 @@ Note:
 /posttrialpause = parameters.ITI
 </trial>
 
+
+************************ 
+Unrelated Trials:
+***********************
+
+prime_UR:
+* selects randomly (without replacement) the next prime for UR and plays it
+* calls trial.target_UR
 <trial prime_UR>
 /ontrialbegin = [
 	values.relatedness = 2;
@@ -791,9 +752,12 @@ Note:
 /branch = [return trial.target_UR;]
 /posttrialpause = values.currentisi
 /recorddata = false
-
 </trial>
 
+target_UR:
+* selects the appropriate target for UR and presents it in the middle of the screen
+* collects trial data
+* updates summary variables
 <trial target_UR>
 /stimulusframes = [1 = target_UR]
 /validresponse = (values.RELATEDwordkey, values.UNRELATEDwordkey)
@@ -821,17 +785,13 @@ Note:
 *******************************************************************************************************************
 *******************************************************************************************************************
 
-The following blocks offer the option to run Condition 1 and Condition 2 in blocked design:
-
-Note: condition 1 = "typical" AE
 <block task>
 / bgstim = (LeftCat, RightCat)
-/trials = [
+/ trials = [
 	1 = getReady;
 	2-49 = noreplace(prime_R, prime_UR);
 ]
 </block>
-
 
 <block finish>
 / trials = [1 = finish]
@@ -842,12 +802,7 @@ Note: condition 1 = "typical" AE
 	EXPERIMENT
 *******************************************************************************************************************
 *******************************************************************************************************************
-Responsekey assignments are counterbalanced across participants by groupnumber
-
-!!!Note: by default, task and condition2 are run in a mixed design. To run them in a blocked design
-change:
-/blocks = [1 = task; 2 = condition2] (and counterbalance) OR
-/blocks = [1-2 = noreplace(task, condition2)] for a random condition selection
+Responsekey assignments are not counterbalanced across participants by groupnumber
 
 <expt a>
 /preinstructions = (intro)
