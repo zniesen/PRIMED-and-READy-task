@@ -41,7 +41,7 @@ Headphones (recommended)
 ## Modifications
 - Based on the original script by Katja Borchert, Ph.D. for Millisecond Software
 - This version was adapted by Zoe Niesen in September 2024 for the NEU-4800 Neuroimaging course at Belmont University (09/2024)
-Original script: [Millisecond Library – Subliminal Priming](https://www.millisecond.com/download/library/subliminalpriming)
+- Original script: [Millisecond Library – Subliminal Priming](https://www.millisecond.com/download/library/subliminalpriming)
 
 ## License
 This adaptation is for academic use only. The base script is © Millisecond Software and distributed under their licensing terms.
