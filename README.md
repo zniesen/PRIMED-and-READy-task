@@ -5,7 +5,7 @@ The task presents an auditory prime followed by a visual target word, and partic
 Table of Contents
 ---
    * [About the Project](#about-the-project)
-   * [Tasks](#tasks)
+   * [Task](#task)
    * [Modifications and Authorship](#modifications)
    * [License](#license)
 
